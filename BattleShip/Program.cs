@@ -6,7 +6,7 @@ namespace BattleShip
     {
         static void Main(string[] args)
         {
-            //    Console.Title = "FIRE! Find the Enemy";
+            Console.Title = "FIRE! Find the Enemy";
 
             //    //global variables
             //    var fireAttempts =  8;
@@ -81,18 +81,15 @@ namespace BattleShip
             //    goto Restart;
 
 
-            Console.WriteLine("=================================================================");
-            Console.WriteLine("   0 1 2 3 4 5 6 7 8 9 ");
-            Console.WriteLine(" 1 - - - - - - - - - - ");
-            Console.WriteLine(" 2 - - - - - - - - - - ");
-            Console.WriteLine(" 3 - - - - - - - - - - ");
-            Console.WriteLine(" 4 - - - - - - - - - - ");
-            Console.WriteLine(" 5 - - - - - - - - - - ");
-            Console.WriteLine(" 6 - - - - - - - - - - ");
-            Console.WriteLine(" 7 - - - - - - - - - - ");
-            Console.WriteLine(" 8 - - - - - - - - - - ");
-            Console.WriteLine(" 9 - - - - - - - - - - ");
-            Console.WriteLine("=================================================================");
+            BattleGrid grid = new BattleGrid();
+            EnemyShip enemyShip = new EnemyShip();
+            Console.WriteLine(enemyShip.ShipRow);
+            Console.WriteLine(enemyShip.ShipHead);
+            Console.WriteLine(enemyShip.ShipBody1);
+            Console.WriteLine(enemyShip.ShipBody2);
+            Console.WriteLine(enemyShip.ShipBody3);
+            Console.WriteLine(enemyShip.ShipBody4);
+
         }
     }
 }
