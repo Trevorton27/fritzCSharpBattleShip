@@ -18,7 +18,7 @@ namespace BattleShip
         public int EnemyLife;
         public string[,] GridSpace;
 
-        public BattleField(int _enemyRow, int _enemyColumn, string[,] gridTemp)
+        public BattleField(int _enemyRow, int _enemyColumn, string[,] freshGrid)
         {
             EnemyRow = _enemyRow;
             EnemyColumnOne = _enemyColumn++;
@@ -26,32 +26,30 @@ namespace BattleShip
             EnemyColumnThree = _enemyColumn++;
             EnemyColumnFour = _enemyColumn++;
             EnemyColumnFive = _enemyColumn++;
-            GridSpace = gridTemp;
+            GridSpace = freshGrid;
             Cannons = 8;
             EnemyLife = 5;
     }
 
-
         public void drawBoard()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("  0 1 2 3 4 5 6 7 8 9 ");
-            Console.WriteLine(" =====================");
+            Console.WriteLine("   0 1 2 3 4 5 6 7 8 9 ");
+            Console.WriteLine("  =====================");
             for (int i = 0; i < GridSpace.GetLength(0); i++)
             {
-                Console.Write("| ");
+                Console.Write("{0}| ", i);
                 for (int j = 0; j < GridSpace.GetLength(1); j++)
                 {
                     Console.Write( "{0} ",GridSpace[i, j]);
                 }
-                Console.WriteLine("|{0} ", i);
+                Console.WriteLine("| ");
             }
-            Console.WriteLine(" =====================");
+            Console.WriteLine("  =====================");
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("\nCannons Left: {0}", Cannons);
-            Console.WriteLine("Enemy Life: {0}\n", EnemyLife);
-            
+            Console.WriteLine("\nCannons Left: {0} ", Cannons);
+            Console.WriteLine("Enemy Life: {0}\n", EnemyLife);          
         }
 
         public void checkLocation(int cannonColumn, int cannonRow)
@@ -64,7 +62,7 @@ namespace BattleShip
             {
                 Console.Clear();
                 drawBoard();
-                Console.WriteLine("General You've already fired at this location\n");
+                Console.WriteLine("General you've already fired at this location\n");
             }
         }
 
@@ -87,7 +85,7 @@ namespace BattleShip
             Console.Clear();
             drawBoard();
 
-            Console.WriteLine("General you {0} the enemy\n", shotOutcome);
+            Console.WriteLine("General you {0} the enemy!\n", shotOutcome);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace BattleShip
         {
             Console.Title = "BATTLESHIP FIRE! Find the Enemy";
             
+            
         NewGame:
             Console.Clear();
 
@@ -46,7 +47,7 @@ namespace BattleShip
             if (gameBoard.Cannons == 0 || gameBoard.EnemyLife == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Press Y key to play again");
+                Console.WriteLine("Game Over!\nPress Y key to play again");
                 Console.ForegroundColor = ConsoleColor.White;
                 if(Console.ReadKey().Key != ConsoleKey.Y)
                 {
