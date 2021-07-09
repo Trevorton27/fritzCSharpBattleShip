@@ -15,15 +15,17 @@ namespace BattleShip
             var enemyLife = 5;
             // var outCome;
 
-            BattleGrid grid = new BattleGrid();
-            
-            EnemyShip enemyShip = new EnemyShip();
+            //Random random = new Random();
+            //int xLocation = random.Next(0, 5);
+            //int yLocation = random.Next(0, 10);
 
-            Console.WriteLine(enemyShip.ShipBody0);
-            Console.WriteLine(enemyShip.ShipBody1);
-            Console.WriteLine(enemyShip.ShipBody2);
-            Console.WriteLine(enemyShip.ShipBody3);
-            Console.WriteLine(enemyShip.ShipBody4);
+            BattleGrid grid = new BattleGrid();
+            grid.drawGrid();
+
+            
+
+            
+            // EnemyShip enemyShip = new EnemyShip();
 
         Restart:
 
@@ -36,7 +38,9 @@ namespace BattleShip
                 int numberInputY = Convert.ToInt32(Console.ReadLine());
 
                 //Gamemaster function runs
-                
+              
+
+
 
                 fireAttempts--;
                 Console.WriteLine("you choose {0} and {1} as the number. Attacks left {2}, enemylife {3}", numberInputX, numberInputY, fireAttempts, enemyLife);
@@ -64,6 +68,7 @@ namespace BattleShip
             }
 
         }
+
 
         //public static void checkForHitOrMiss(BattleGrid grid, EnemyShip enemyShip, int numberInputX, int numberInputY)
         //{
