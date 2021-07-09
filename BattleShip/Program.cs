@@ -7,47 +7,42 @@ namespace BattleShip
         static void Main(string[] args)
         {
             Console.Title = "FIRE! Find the Enemy";
-
+           
         NewGame:
 
-            string[,] gridTemp = createGrid();
-
-            // var outCome;
-
-            //Random random = new Random();
-            //int xLocation = random.Next(0, 5);
-            //int yLocation = random.Next(0, 10);
-
-            //make grid with the same loop
-            //add grid values to battlegrid for constructor
+            string[,] freshGrid = populateGrid();
+            Random random = new Random();
+            int enemyRow = random.Next(0, 10);
+            int enemyColumn = random.Next(0, 5);
+           
+            BattleField gameBoard = new BattleField(enemyRow, enemyColumn, freshGrid);
 
 
-            BattleGrid grid = new BattleGrid(gridTemp);
-            grid.drawGrid();
-            
+            gameBoard.drawBoard();
 
         Restart:
 
             try
             {
+                Console.Write("General please designate Row: ");
+                int cannonRow = Convert.ToInt32(Console.ReadLine());
+                Console.Write("General please designate Column: ");
+                int cannonColumn = Convert.ToInt32(Console.ReadLine());
                 
-                Console.Write("Please input a number for y-axis: ");
-                int numberInputY = Convert.ToInt32(Console.ReadLine());
-                Console.Write("Please input a number for x-axis: ");
-                int numberInputX = Convert.ToInt32(Console.ReadLine());
-                
-                grid.checkLocation(numberInputX, numberInputY);
+                gameBoard.checkLocation(cannonColumn, cannonRow);
               
-                Console.WriteLine("you choose {0} and {1} as the number. Attacks left {2}, enemylife {3}", numberInputX, numberInputY, grid.cannons, grid.enemyLife);
+                Console.WriteLine("you choose {0} and {1} as the number", cannonColumn, cannonRow);
 
-            if (grid.cannons == 0)
+            if (gameBoard.Cannons == 0)
             {
                 Console.WriteLine("gameover you lose");
+                    Console.Clear();
                     goto NewGame;
             }
-            else if (grid.enemyLife == 0)
+            else if (gameBoard.EnemyLife == 0)
             {
                 Console.WriteLine("gamveover you win");
+                    Console.Clear();
                     goto NewGame;
             }
             else
@@ -64,7 +59,7 @@ namespace BattleShip
 
         }
 
-        public static string[,] createGrid()
+        public static string[,] populateGrid()
         {
             string[,] gridTemplate = new string[10, 10];
 
@@ -78,5 +73,7 @@ namespace BattleShip
 
             return gridTemplate;
         }
+
+
     }
 }
