@@ -21,9 +21,6 @@ namespace BattleShip
 
             BattleGrid grid = new BattleGrid();
             grid.drawGrid();
-
-            
-
             
             // EnemyShip enemyShip = new EnemyShip();
 
@@ -31,26 +28,23 @@ namespace BattleShip
 
             try
             {
-                Console.Write("Please input a number for x-axis: ");
-                int numberInputX = Convert.ToInt32(Console.ReadLine());
                 
                 Console.Write("Please input a number for y-axis: ");
                 int numberInputY = Convert.ToInt32(Console.ReadLine());
-
+                Console.Write("Please input a number for x-axis: ");
+                int numberInputX = Convert.ToInt32(Console.ReadLine());
+                
                 //Gamemaster function runs
+                grid.checkLocation(numberInputX, numberInputY);
               
+                Console.WriteLine("you choose {0} and {1} as the number. Attacks left {2}, enemylife {3}", numberInputX, numberInputY, grid.cannons, grid.enemyLife);
 
-
-
-                fireAttempts--;
-                Console.WriteLine("you choose {0} and {1} as the number. Attacks left {2}, enemylife {3}", numberInputX, numberInputY, fireAttempts, enemyLife);
-
-            if (fireAttempts == 0)
+            if (grid.cannons == 0)
             {
                 Console.WriteLine("gameover you lose");
                     goto NewGame;
             }
-            else if (enemyLife == 0)
+            else if (grid.enemyLife == 0)
             {
                 Console.WriteLine("gamveover you win");
                     goto NewGame;

@@ -14,6 +14,8 @@ namespace BattleShip
         public int enemyThreeX;
         public int enemyFourX;
         public int enemyFiveX;
+        public int cannons = 8;
+        public int enemyLife = 5;
 
         public string[,] gridSpace = { 
         { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
@@ -40,17 +42,6 @@ namespace BattleShip
             enemyFourX = xLocation++;
             enemyFiveX = xLocation++;
 
-            //Console.WriteLine("0 {0} {1} {2} {3} {4} {5} {6} {7} {8} {0}", row0);
-            //Console.WriteLine("1 {0} {1} {2} {3} {4} {5} {6} {7} {8} {9}", row1);
-            //Console.WriteLine("2 {0} {1} {2} {3} {4} {5} {6} {7} {8} {9}", row2);
-            //Console.WriteLine("3 {0} {1} {2} {3} {4} {5} {6} {7} {8} {9}", row3);
-            //Console.WriteLine("4 {0} {1} {2} {3} {4} {5} {6} {7} {8} {9}", row4);
-            //Console.WriteLine("5 {0} {1} {2} {3} {4} {5} {6} {7} {8} {9}", row5);
-            //Console.WriteLine("6 {0} {1} {2} {3} {4} {5} {6} {7} {8} {9}", row6);
-            //Console.WriteLine("7 {0} {1} {2} {3} {4} {5} {6} {7} {8} {9}", row7);
-            //Console.WriteLine("8 {0} {1} {2} {3} {4} {5} {6} {7} {8} {9}", row8);
-            //Console.WriteLine("9 {0} {1} {2} {3} {4} {5} {6} {7} {8} {9}", row9);
-
         }
 
         public void drawGrid()
@@ -68,6 +59,37 @@ namespace BattleShip
                 Console.WriteLine("|{0} ", i);
             }
             Console.WriteLine(" =====================");
+        }
+
+        public void checkLocation(int inputX, int inputY)
+        {
+            
+            if(gridSpace[inputY, inputX] == "-")
+            {
+                hitCheck(inputX, inputY);
+            } else
+            {
+                Console.Clear();
+                this.drawGrid();
+            }
+        }
+
+        public void hitCheck(int inputX, int inputY)
+        {
+            if(inputY == enemyLocationY && (inputX == enemyOneX || inputX == enemyTwoX || inputX == enemyThreeX || inputX == enemyFourX || inputX == enemyFiveX))
+            {
+                gridSpace[inputY, inputX] = "X";
+                enemyLife--;
+            } else
+            {
+                gridSpace[inputY, inputX] = "O";
+            }
+
+            cannons--;
+            Console.WriteLine(this.enemyLocationY);
+            Console.WriteLine(this.enemyFourX);
+            Console.Clear();
+            this.drawGrid();
         }
     }
 }
