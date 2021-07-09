@@ -8,21 +8,23 @@ namespace BattleShip
         {
             Console.Title = "FIRE! Find the Enemy";
 
-            NewGame:
+        NewGame:
 
-            //global variables
-            var fireAttempts = 8;
-            var enemyLife = 5;
+            string[,] gridTemp = createGrid();
+
             // var outCome;
 
             //Random random = new Random();
             //int xLocation = random.Next(0, 5);
             //int yLocation = random.Next(0, 10);
 
-            BattleGrid grid = new BattleGrid();
+            //make grid with the same loop
+            //add grid values to battlegrid for constructor
+
+
+            BattleGrid grid = new BattleGrid(gridTemp);
             grid.drawGrid();
             
-            // EnemyShip enemyShip = new EnemyShip();
 
         Restart:
 
@@ -34,7 +36,6 @@ namespace BattleShip
                 Console.Write("Please input a number for x-axis: ");
                 int numberInputX = Convert.ToInt32(Console.ReadLine());
                 
-                //Gamemaster function runs
                 grid.checkLocation(numberInputX, numberInputY);
               
                 Console.WriteLine("you choose {0} and {1} as the number. Attacks left {2}, enemylife {3}", numberInputX, numberInputY, grid.cannons, grid.enemyLife);
@@ -63,16 +64,19 @@ namespace BattleShip
 
         }
 
+        public static string[,] createGrid()
+        {
+            string[,] gridTemplate = new string[10, 10];
 
-        //public static void checkForHitOrMiss(BattleGrid grid, EnemyShip enemyShip, int numberInputX, int numberInputY)
-        //{
-        //    if(enemyShip.ShipRow == numberInputY)
-        //    {
-        //        for(int i = 0, i < 5, i++)
-        //        {
+            for (int i = 0; i < gridTemplate.GetLength(0); i++)
+            {
+                for (int j = 0; j < gridTemplate.GetLength(1); j++)
+                {
+                    gridTemplate[i, j] = "-";
+                }
+            }
 
-        //        }
-        //    }
-        //}
+            return gridTemplate;
+        }
     }
 }

@@ -16,20 +16,9 @@ namespace BattleShip
         public int enemyFiveX;
         public int cannons = 8;
         public int enemyLife = 5;
+        public string[,] gridSpace;
 
-        public string[,] gridSpace = { 
-        { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-        { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-        { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-        { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-        { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-        { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-        { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-        { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-        { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-        { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" }};
-
-        public BattleGrid()
+        public BattleGrid(string[,] gridTemp)
         {
             Random random = new Random();
             int xLocation = random.Next(0, 5);
@@ -42,17 +31,19 @@ namespace BattleShip
             enemyFourX = xLocation++;
             enemyFiveX = xLocation++;
 
+            gridSpace = gridTemp;
         }
+
 
         public void drawGrid()
         {
             
             Console.WriteLine("  0 1 2 3 4 5 6 7 8 9 ");
             Console.WriteLine(" =====================");
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < gridSpace.GetLength(0); i++)
             {
                 Console.Write("| ");
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < gridSpace.GetLength(1); j++)
                 {
                     Console.Write( "{0} ",gridSpace[i, j]);
                 }
