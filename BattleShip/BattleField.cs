@@ -16,7 +16,7 @@ namespace BattleShip
         public int EnemyColumnFive;
         public int Cannons;
         public int EnemyLife;
-        public string[,] gridSpace;
+        public string[,] GridSpace;
 
         public BattleField(int _enemyRow, int _enemyColumn, string[,] gridTemp)
         {
@@ -26,7 +26,7 @@ namespace BattleShip
             EnemyColumnThree = _enemyColumn++;
             EnemyColumnFour = _enemyColumn++;
             EnemyColumnFive = _enemyColumn++;
-            gridSpace = gridTemp;
+            GridSpace = gridTemp;
             Cannons = 8;
             EnemyLife = 5;
     }
@@ -34,28 +34,30 @@ namespace BattleShip
 
         public void drawBoard()
         {
-            
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("  0 1 2 3 4 5 6 7 8 9 ");
             Console.WriteLine(" =====================");
-            for (int i = 0; i < gridSpace.GetLength(0); i++)
+            for (int i = 0; i < GridSpace.GetLength(0); i++)
             {
                 Console.Write("| ");
-                for (int j = 0; j < gridSpace.GetLength(1); j++)
+                for (int j = 0; j < GridSpace.GetLength(1); j++)
                 {
-                    Console.Write( "{0} ",gridSpace[i, j]);
+                    Console.Write( "{0} ",GridSpace[i, j]);
                 }
                 Console.WriteLine("|{0} ", i);
             }
             Console.WriteLine(" =====================");
 
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\nCannons Left: {0}", Cannons);
             Console.WriteLine("Enemy Life: {0}\n", EnemyLife);
+            
         }
 
         public void checkLocation(int cannonColumn, int cannonRow)
         {
             
-            if(gridSpace[cannonRow, cannonColumn] == "-")
+            if(GridSpace[cannonRow, cannonColumn] == "-")
             {
                 hitCheck(cannonColumn, cannonRow);
             } else
@@ -72,22 +74,20 @@ namespace BattleShip
 
             if(cannonRow == EnemyRow && (cannonColumn == EnemyColumnOne || cannonColumn == EnemyColumnTwo || cannonColumn == EnemyColumnThree || cannonColumn == EnemyColumnFour || cannonColumn == EnemyColumnFive))
             {
-                gridSpace[cannonRow, cannonColumn] = "X";
+                GridSpace[cannonRow, cannonColumn] = "X";
                 EnemyLife--;
                 shotOutcome = "hit";
             } else
             {
-                gridSpace[cannonRow, cannonColumn] = "O";
+                GridSpace[cannonRow, cannonColumn] = "O";
                 shotOutcome = "missed";
             }
 
             Cannons--;
-            Console.WriteLine(this.EnemyRow);
-            Console.WriteLine(this.EnemyColumnFour);
             Console.Clear();
             drawBoard();
 
-            Console.WriteLine("General you {0} the ship\n", shotOutcome);
+            Console.WriteLine("General you {0} the enemy\n", shotOutcome);
         }
     }
 }

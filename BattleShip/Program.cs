@@ -6,9 +6,10 @@ namespace BattleShip
     {
         static void Main(string[] args)
         {
-            Console.Title = "FIRE! Find the Enemy";
-           
+            Console.Title = "BATTLESHIP FIRE! Find the Enemy";
+            
         NewGame:
+            Console.Clear();
 
             string[,] freshGrid = populateGrid();
             Random random = new Random();
@@ -16,8 +17,6 @@ namespace BattleShip
             int enemyColumn = random.Next(0, 5);
            
             BattleField gameBoard = new BattleField(enemyRow, enemyColumn, freshGrid);
-
-
             gameBoard.drawBoard();
 
         Restart:
@@ -30,33 +29,38 @@ namespace BattleShip
                 int cannonColumn = Convert.ToInt32(Console.ReadLine());
                 
                 gameBoard.checkLocation(cannonColumn, cannonRow);
-              
-                Console.WriteLine("you choose {0} and {1} as the number", cannonColumn, cannonRow);
-
-            if (gameBoard.Cannons == 0)
-            {
-                Console.WriteLine("gameover you lose");
-                    Console.Clear();
-                    goto NewGame;
+   
             }
-            else if (gameBoard.EnemyLife == 0)
+            catch (Exception e)
             {
-                Console.WriteLine("gamveover you win");
-                    Console.Clear();
-                    goto NewGame;
+
+                Console.Clear();
+                gameBoard.drawBoard();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Please select a number between 0-9\n");
+                Console.ForegroundColor = ConsoleColor.White;
+                goto Restart;
+            }
+
+            if (gameBoard.Cannons == 0 || gameBoard.EnemyLife == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Press Y key to play again");
+                Console.ForegroundColor = ConsoleColor.White;
+                if(Console.ReadKey().Key != ConsoleKey.Y)
+                {
+                    Console.WriteLine("Pressed {0}\nTill next time General!", Console.ReadKey().Key);                  
+                } else
+                {               
+                goto NewGame;
+                }
+                
             }
             else
             {
                     goto Restart;
             }
-                
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                goto Restart;
-            }
-
         }
 
         public static string[,] populateGrid()
