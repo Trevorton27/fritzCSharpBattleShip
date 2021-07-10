@@ -3,7 +3,7 @@
 A simple C# Console Application 
 
 
-![battleship](./images/game-screenshot.png)
+![battleship](./BattleShip/images/game-screenshot.png)
 
 
 ## Instructions
