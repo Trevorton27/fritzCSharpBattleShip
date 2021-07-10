@@ -18,7 +18,7 @@ namespace BattleShip
         public int EnemyLife;
         public string[,] GridSpace;
 
-        public BattleField(int _enemyRow, int _enemyColumn, string[,] freshGrid)
+        public BattleField(int _enemyRow, int _enemyColumn, string[,] grid)
         {
             EnemyRow = _enemyRow;
             EnemyColumnOne = _enemyColumn++;
@@ -26,7 +26,7 @@ namespace BattleShip
             EnemyColumnThree = _enemyColumn++;
             EnemyColumnFour = _enemyColumn++;
             EnemyColumnFive = _enemyColumn++;
-            GridSpace = freshGrid;
+            GridSpace = grid;
             Cannons = 8;
             EnemyLife = 5;
     }

@@ -12,12 +12,12 @@ namespace BattleShip
         NewGame:
             Console.Clear();
 
-            string[,] freshGrid = populateGrid();
+            string[,] grid = populateGrid();
             Random random = new Random();
             int enemyRow = random.Next(0, 10);
             int enemyColumn = random.Next(0, 5);
            
-            BattleField gameBoard = new BattleField(enemyRow, enemyColumn, freshGrid);
+            BattleField gameBoard = new BattleField(enemyRow, enemyColumn, grid);
             gameBoard.drawBoard();
 
         Restart:
